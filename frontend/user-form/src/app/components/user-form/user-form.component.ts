@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import {  FormBuilder, FormControl, FormGroup,  Validators } from '@angular/forms';
 import { UserServiceService } from 'src/app/service/user-service.service';
 
-let error_messages = {
-  exist:{
-    email:'this Email already used, try again or Update',
-    username:'The UserName already taken'
-  },
-}
+
 
 @Component({
   selector: 'app-user-form',

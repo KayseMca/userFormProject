@@ -1,0 +1,128 @@
+<div class="form-style">
+  <div>
+    <p>* Required fields </p>
+    <p>For now User form working well, this is just example form not saving data to server</p>
+  </div>
+  <form [formGroup]="agentForm" (ngSubmit)="createAgent()">
+    <fieldset>
+      <legend><span class="number">1</span> Agent Info</legend>
+
+      <!-- eror -->
+      <div
+        *ngIf="
+          agentForm.controls['userName'].invalid &&
+          (agentForm.controls['userName'].dirty ||
+            agentForm.controls['userName'].touched)|| 
+            (agentForm.get('lastName').untouched && isSubmitted)
+        "
+        class="alert"
+      >
+        Please enter a valid username
+      </div>
+
+      <!-- Username Label -->
+      <input
+        type="text"
+        formControlName="userName"
+        required
+        name="userName"
+        placeholder="Your Name *"
+      />
+
+      <!-- Last Name Label -->
+      <!-- eror -->
+      <div
+        *ngIf="
+          agentForm.controls['lastName'].invalid &&
+          (agentForm.controls['lastName'].dirty ||
+            agentForm.controls['lastName'].touched)|| 
+            (agentForm.get('lastName').untouched && isSubmitted)
+        "
+        class="alert"
+      >
+        Please enter Your Last Name
+      </div>
+
+      <!-- Username Label -->
+      <input
+        type="text"
+        formControlName="lastName"
+        required
+        name="lastName"
+        placeholder="Your Last Name *"
+      />
+
+      <!-- eror -->
+      <div
+        *ngIf="
+          agentForm.get('email').invalid &&
+          (agentForm.controls['email'].dirty ||
+            agentForm.controls['email'].touched)|| 
+            (agentForm.get('lastName').untouched && isSubmitted)
+        "
+        class="alert"
+      >
+        Invalid Email! Please enter a valid Email
+      </div>
+
+      <!-- Email -->
+      <input type="email" formControlName="email" name="email" placeholder="Your Email *" />
+
+      <!-- Telefon -->
+      <!-- eror -->
+      <div
+        *ngIf="
+          agentForm.controls['telefon'].invalid &&
+          (agentForm.controls['telefon'].dirty ||
+            agentForm.controls['telefon'].touched)|| 
+            (agentForm.get('lastName').untouched && isSubmitted)
+        "
+        class="alert"
+      >
+        Invalid Phone Number! Please enter a valid Number
+      </div>
+      <input type="telefon" formControlName="telefon" name="telefon" placeholder="Your Telefon *" />
+
+      <!-- options -->
+      <textarea name="description" formControlName="description" placeholder="About yourself"></textarea>
+      <label for="job">Interests:</label>
+      <select id="job" name="interest" formControlName="interests">
+        <optgroup label="Indoors" >
+          <option *ngFor="let indoor of indoors" value="{{indoor}}" >{{indoor}}</option>
+        </optgroup>
+        <optgroup label="Outdoors">
+          <option *ngFor="let outdoor of outdoors" value="{{outdoor}}" >{{outdoor}}</option>
+        </optgroup>
+      </select>
+
+      <!-- Company Label -->
+      <!-- eror -->
+      <div
+        *ngIf="
+          agentForm.get('company').invalid &&
+          (agentForm.controls['company'].dirty ||
+            agentForm.controls['company'].touched)|| 
+            (agentForm.get('company').untouched && isSubmitted)
+        "
+        class="alert"
+      >
+         Please enter a valid Company Name!
+      </div>
+      
+      <input
+        type="text"
+        formControlName="company"
+        required
+        name="company"
+        placeholder="Your Company *"
+      />
+
+      
+    </fieldset>
+    <fieldset>
+      <legend><span class="number">2</span> Additional Info</legend>
+      <textarea name="additional" placeholder="About Your School"></textarea>
+    </fieldset>
+    <input type="submit" value="Apply"  />
+  </form>
+</div>

@@ -1,0 +1,44 @@
+
+<div class="form-style">
+    <p class="search__title">
+        Go ahead, and search by email to update User!
+    </p>
+    <form >
+
+        <input class="search__input" type="email" [formControl]='userEmail' placeholder="User Email">
+        <span>
+          <p *ngIf="!valid() && userEmail.touched" style="color: red;">
+            required! Please enter a valid email
+          </p>
+        </span>
+        <input type="button" value="Search" [disabled] = '!valid()' (click)='findUser()'>
+    </form>
+
+</div>
+
+
+<table class="table table-striped" *ngIf="userFound?.userName;else notFoundmessage">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">UserName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Email</th>
+        <th scope="col">del</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="padding:8px;">
+        <th scope="row">1</th>
+        <td>{{userFound.userName}}</td>
+        <td>{{userFound.lastName}}</td>
+        <td>{{userFound?.email}}</td>
+        <td>
+            <button mat-button color='warn' (click)='deleteUser()'>Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template  #notFoundmessage >
+      <p *ngIf="submitted">not Found</p>
+  </ng-template>

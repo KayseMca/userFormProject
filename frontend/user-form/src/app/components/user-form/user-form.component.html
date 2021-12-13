@@ -1,0 +1,103 @@
+<div class="form-style">
+  <div>
+    <p>* Required fields</p>
+  </div>
+  <form [formGroup]="userForm" (ngSubmit)="createUser()">
+    <fieldset>
+      <legend><span class="number">1</span> Candidate Info</legend>
+
+      <!-- eror -->
+      <div
+        *ngIf="
+          userForm.controls['userName'].invalid &&
+          (userForm.controls['userName'].dirty ||
+            userForm.controls['userName'].touched)|| 
+            (userForm.get('userName').untouched)"
+        class="alert"
+      >
+        Please enter a valid username
+      </div>
+    
+
+      <!-- Username Label -->
+      <input
+        type="text"
+        formControlName="userName"
+        required
+        name="userName"
+        placeholder="Your Name *"
+      />
+
+      <!-- Last Name Label -->
+      <!-- eror -->
+      <div
+        *ngIf="
+          userForm.controls['lastName'].invalid &&
+          (userForm.controls['lastName'].dirty ||
+            userForm.controls['lastName'].touched)|| 
+            (userForm.get('lastName').untouched)
+        "
+        class="alert"
+      >
+        Please enter Your Last Name
+      </div>
+
+      <!-- Username Label -->
+      <input
+        type="text"
+        formControlName="lastName"
+        required
+        name="lastName"
+        placeholder="Your Last Name *"
+      />
+
+      <!-- eror -->
+      <div
+        *ngIf="
+          userForm.get('email').invalid &&
+          (userForm.controls['email'].dirty ||
+            userForm.controls['email'].touched)|| 
+            (userForm.get('email').untouched)
+        "
+        class="alert"
+      >
+        Invalid Email! Please enter a valid Email
+      </div>
+
+      <!-- Email -->
+      <input type="email" formControlName="email" name="email" placeholder="Your Email *" />
+
+      <!-- Telefon -->
+      <!-- eror -->
+      <div
+        *ngIf="
+          userForm.controls['telefon'].invalid &&
+          (userForm.controls['telefon'].dirty ||
+            userForm.controls['telefon'].touched)|| 
+            (userForm.get('telefon').untouched)
+        "
+        class="alert"
+      >
+        Invalid Phone Number! Please enter a valid Number
+      </div>
+      <input type="telefon" formControlName="telefon" name="telefon" placeholder="Your Telefon *" />
+
+      <!-- options -->
+      <textarea name="description" formControlName="description" placeholder="About yourself"></textarea>
+      <label for="job">Interests:</label>
+      <select id="job" name="interest" formControlName="interests">
+        <optgroup label="Indoors" >
+          <option *ngFor="let indoor of indoors" value="{{indoor}}" >{{indoor}}</option>
+        </optgroup>
+        <optgroup label="Outdoors">
+          <option *ngFor="let outdoor of outdoors" value="{{outdoor}}" >{{outdoor}}</option>
+        </optgroup>
+      </select>
+    </fieldset>
+    <fieldset>
+      <legend><span class="number">2</span> Additional Info</legend>
+      <textarea name="additional" formControlName="additional" placeholder="About Your School"></textarea>
+    </fieldset>
+    <input type="submit" value="Apply" [disabled]='!userForm.valid'[ngStyle]="{'cursor':userForm.valid ? 'pointer' : 'not-allowed' }" />
+  </form>
+</div>

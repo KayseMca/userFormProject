@@ -1,0 +1,14 @@
+
+<app-header></app-header>
+
+
+
+
+<!-- <app-user-form></app-user-form> -->
+<div class="form-style" >
+
+    <button *ngIf="page !=='/'" mat-raised-button color='accent' style="float: right; margin-bottom: 10px;" (click)='goBack()'> Go back</button>
+    <router-outlet></router-outlet>
+</div>
+
+<app-footer></app-footer>

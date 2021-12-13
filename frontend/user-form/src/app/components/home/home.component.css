@@ -1,0 +1,34 @@
+.mat-button-base{
+    display: block;
+    width: 90%;
+    padding: 12px;
+    margin: 13px;
+}
+
+.mat-success {
+    background-color: green;
+    color: #fff;
+}
+
+
+
+
+
+a[ng-reflect-router-link] {
+    color: rgb(250, 249, 249);
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    width: 300px;
+
+  }
+  
+  tr[ng-reflect-router-link] {
+    cursor: pointer;
+
+
+  }
+
+  .link-color{
+      color:black !important;
+  }
